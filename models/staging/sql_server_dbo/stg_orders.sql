@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('src_google_sheets', 'orders') }}
+    select * from {{ source('sql_server_dbo', 'orders') }}
 
 ),
 

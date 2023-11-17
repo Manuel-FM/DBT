@@ -2,17 +2,16 @@ with
 
 source as (
 
-    select * from {{ source('src_google_sheets', 'products') }}
+    select * from {{ source('sql_server_dbo', 'promos') }}
 
 ),
 
 renamed as (
 
     select
-        product_id,
-        price,
-        name,
-        inventory,
+        promo_id,
+        discount,
+        status,
         _fivetran_deleted,
         _fivetran_synced
 
