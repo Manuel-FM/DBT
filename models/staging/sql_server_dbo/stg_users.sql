@@ -1,7 +1,8 @@
 {{ config(
     materialized='incremental',
-    unique_key = '_row',
-    on_schema_change='fail'
+    unique_key = 'user_id',
+    on_schema_change='fail',
+    target_table='users'
     ) 
     }}
     

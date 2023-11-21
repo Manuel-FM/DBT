@@ -4,11 +4,13 @@
     config(
       target_schema='snapshots',
       unique_key='user_id',
-      strategy='timestamp',
-      updated_at='_fivetran_synced',
+      strategy='check',
+      check_cols=['address_id', 'last_name','phone_number','first_name'],
+      invalidate_hard_deletes=True,
     )
 }}
 
-select * from {{ source('sql_server_dbo', 'users') }}
+select * from {{ ref('stg_users') }}
 
+WHERE f_carga = (SELECT max(f_carga) FROM {{ ref("stg_users") }})
 {% endsnapshot %}
