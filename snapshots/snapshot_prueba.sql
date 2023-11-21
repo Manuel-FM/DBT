@@ -1,4 +1,4 @@
-{% snapshot prueba %}
+{% snapshot snapshot_prueba %}
 
 {{
     config(
@@ -9,6 +9,6 @@
     )
 }}
 
-select * from {{ source('google_sheets', 'budget') }}
+select * from {{ source('src_google_sheets', 'budget') }}
 
 {% endsnapshot %}
