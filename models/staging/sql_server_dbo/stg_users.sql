@@ -1,11 +1,3 @@
-{{ config(
-    materialized='incremental',
-    unique_key = 'user_id',
-    on_schema_change='fail',
-    target_table='users'
-    ) 
-    }}
-    
 with 
 
 source as (
@@ -18,11 +10,16 @@ renamed as (
 
     select
         user_id,
-        address_id,
-        last_name,
-        cast(REGEXP_REPLACE(phone_number,'(-)')as number )as phone_number,
-        first_name,
-        _fivetran_synced as f_carga
+	    updated_at,
+	    address_id,
+	    last_name,
+	    created_at,
+	    phone_number,
+	    total_orders,
+	    first_name,
+	    email,
+	    _fivetran_deleted,
+	    _fivetran_synced
 
     from source
 

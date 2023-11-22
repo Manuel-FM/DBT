@@ -9,13 +9,13 @@ source as (
 renamed as (
 
     select
-        order_id,
+        cast(order_id as varchar(50))as order_id,
         shipping_service,
         shipping_cost,
         address_id,
         created_at,
         promo_id,
-        estimated_delivery_at,
+        cast(estimated_delivery_at as timestamp(9))as _utc,
         order_cost,
         user_id,
         order_total,
